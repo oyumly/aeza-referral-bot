@@ -44,17 +44,17 @@ class AezaAPI {
                 throw new Error(`API клиент для аккаунта ${account} не настроен`);
             }
 
-            console.log(`🔄 Запрос к ${account} API: ${endpoint}`);
+            console.log(`Запрос к ${account} API: ${endpoint}`);
             const response = await client.get(endpoint);
-            console.log(`✅ Ответ от ${account} API получен:`, response.status);
+            console.log(`Ответ от ${account} API получен:`, response.status);
             
             return response.data;
         } catch (error) {
-            console.error(`❌ Ошибка запроса к ${account} API:`, error.message);
+            console.error(`Ошибка запроса к ${account} API:`, error.message);
             
             if (error.response) {
-                console.error(`📋 Статус ответа: ${error.response.status}`);
-                console.error(`📋 Данные ответа:`, error.response.data);
+                console.error(`Статус ответа: ${error.response.status}`);
+                console.error(`Данные ответа:`, error.response.data);
                 
                 return {
                     error: {
@@ -72,18 +72,18 @@ class AezaAPI {
 
     async getBalance(account = 'net') {
         try {
-            console.log(`💰 Запрашиваю баланс для ${account} аккаунта...`);
+            console.log(`Запрашиваю баланс для ${account} аккаунта...`);
             const balanceData = await this.makeRequest('/desktop', account);
             
             if (balanceData.error) {
-                console.error(`❌ Ошибка получения баланса для ${account}:`, balanceData.error);
+                console.error(`Ошибка получения баланса для ${account}:`, balanceData.error);
                 return balanceData;
             }
             
-            console.log(`✅ Баланс для ${account} получен успешно`);
+            console.log(`Баланс для ${account} получен успешно`);
             return balanceData;
         } catch (error) {
-            console.error(`❌ Критическая ошибка получения баланса для ${account}:`, error);
+            console.error(`Критическая ошибка получения баланса для ${account}:`, error);
             return {
                 error: {
                     message: error.message,
@@ -97,12 +97,12 @@ class AezaAPI {
         const results = {};
         
         if (this.apiKeyRu) {
-            console.log('🇷🇺 Получаю баланс RU аккаунта...');
+            console.log('Получаю баланс RU аккаунта...');
             results.ru = await this.getBalance('ru');
         }
         
         if (this.apiKeyNet) {
-            console.log('🌍 Получаю баланс NET аккаунта...');
+            console.log('Получаю баланс NET аккаунта...');
             results.net = await this.getBalance('net');
         }
         
@@ -216,12 +216,12 @@ class AezaAPI {
 
     enableMonitoring() {
         this.monitoringEnabled = true;
-        console.log('🔔 Мониторинг баланса включен');
+        console.log('Мониторинг баланса включен');
     }
 
     disableMonitoring() {
         this.monitoringEnabled = false;
-        console.log('🔕 Мониторинг баланса выключен');
+        console.log('Мониторинг баланса выключен');
     }
 
     async checkBalanceChanges() {
@@ -269,7 +269,7 @@ class AezaAPI {
             }
             
         } catch (error) {
-            console.error('❌ Ошибка проверки изменений баланса:', error);
+            console.error('Ошибка проверки изменений баланса:', error);
         }
         
         return notifications;
