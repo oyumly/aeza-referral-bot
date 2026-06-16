@@ -12,7 +12,7 @@
 
 1. Склонируйте репозиторий:
    ```bash
-   git clone <url>
+   git clone <https://github.com/oyumly/aeza-referral-bot.git>
    cd my-ref-aeza
    ```
 2. Установите зависимости:
